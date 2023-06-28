@@ -2,7 +2,7 @@ import Vue from 'vue';
 import './index.css';
 import { Icon } from '@iconify/vue2';
 // import indexVue from './index.vue'
-import indexVue from './index2.vue'
+import indexVue from './indexView/index2.vue'
 
 Vue.component('Icon', Icon);
 

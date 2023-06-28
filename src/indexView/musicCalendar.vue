@@ -1,0 +1,54 @@
+<template>
+  <div>
+    <p class="text-2xl mb-3">
+      音乐日历
+      <span
+        class="text-[20px] mb-3 p-[6px]"
+        style="background-color: #ccc; border-radius: 20px"
+      >
+        今日2条
+        <Icon
+          icon="ep:arrow-right-bold"
+          width="15"
+          class="inline-block mb-2"
+          style="margin-top: 5px"
+        />
+      </span>
+    </p>
+    <ul class="overflow-hidden" style="border-radius: 20px">
+      <div
+        v-for="item in rili"
+        :key="item.id4"
+        class="flex flex-wrap bg-white overflow-hidden"
+      >
+        <div class="w-[100%] mt-4 ml-4 mb-4 flex">
+          <div class="w-[70%]">
+            <span class="text-[20px]">
+              {{ formattedDate }}
+            </span>
+            <span
+              class="p-[4px]"
+              style="color: red; background-color: #fbeaea; border-radius: 4px"
+            >
+              {{ item.tag }}
+            </span>
+            <p class="w-[80%]">{{ item.title }}</p>
+          </div>
+          <div class="w-[20%]">
+            <img :src="item.imgUrl" alt="" style="border-radius: 20px" />
+          </div>
+        </div>
+      </div>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'indexmenu',
+  props: ['rili','formattedDate'],
+};
+</script>
+
+<style scoped>
+</style>
