@@ -26,7 +26,7 @@
               {{ item.uiElement.mainTitle.title }}
             </p>
             <p class="absolute" style="top: 10px; right: 10px; color: white">
-              {{ item.resources[0].resourceExtInfo.playCount }}
+              {{ Math.floor(item.resources[0].resourceExtInfo.playCount/10000)}} 万
             </p>
           </div>
         </div>
