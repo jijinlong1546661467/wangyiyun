@@ -1,13 +1,13 @@
 <template>
     <div @click="clickHandler" >
         <transition :name="direction">
-            <div v-show="visible" class="w-screen h-[208vh] bg-slate-100 absolute z-[999]"
+            <div v-show="visible" class=" bg-slate-100 absolute z-[999]"
                 :style="[drawerContentStyle, { width }]">
                 <div>
                     <slot name="header">
                         <div class="flex justify-between items-center">
                             <p>{{ title }}</p>
-                            <Icon @click.native="closeDrawer" icon="clarity:times-line" />
+                            <!-- <Icon @click.native="closeDrawer" icon="clarity:times-line" /> -->
                         </div>
                     </slot>
                 </div>
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </transition>
-        <div v-if="visible" ref="drawerMask" class="bg-black opacity-20 h-[208vh] absolute top-0 right-0 bottom-0 left-0 z-[998]">
+        <div v-if="visible" ref="drawerMask" class="bg-black opacity-20 h-[101vh] absolute top-0 right-0 bottom-0 left-0 z-[998]">
         </div>
     </div>
 </template>
@@ -61,13 +61,13 @@ export default {
                 };
             } else if (this.direction === 'ltr') {
                 return {
-                    height: '208vh',
+                    height: '101vh',
                     left: 0,
                     top: 0,
                 };
             } else if (this.direction === 'rtl') {
                 return {
-                    height: '208vh',
+                    height: '101vh',
                     right: 0,
                     top: 0,
                 };
@@ -82,6 +82,7 @@ export default {
             if (e.target === this.$refs.drawerMask) {
                 // this.visible = false;
                 // 使用vm.$emit给父组件传递数据
+                document.documentElement.style.overflow = `auto`
                 this.closeDrawer();
             }
         },
@@ -89,20 +90,19 @@ export default {
 };
 </script>
 <style scoped>
-.btt-enter,
-.btt-leave-to {
-    /* transform: translateY(110%); */
-    transform: translateX(110%);
+.ltr-enter,
+.ltr-leave-to {
+    transform: translateX(-100%);
+    
 }
 
-.btt-enter-active,
-.btt-leave-active {
+.ltr-enter-active,
+.ltr-leave-active {
     transition: all ease-in-out 0.5s;
 }
 
-.btt-enter-to,
-.btt-leave {
-    /* transform: translateY(0); */
+.ltr-enter-to,
+.ltr-leave {
     transform: translateX(0);
 }
 </style>

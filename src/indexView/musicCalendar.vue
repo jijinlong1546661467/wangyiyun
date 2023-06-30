@@ -6,7 +6,7 @@
         class="text-[20px] mb-3 p-[6px]"
         style="background-color: #ccc; border-radius: 20px"
       >
-        今日2条
+        今日{{rili.length}}条
         <Icon
           icon="ep:arrow-right-bold"
           width="15"
@@ -17,8 +17,9 @@
     </p>
     <ul class="overflow-hidden" style="border-radius: 20px">
       <div
-        v-for="item in rili"
+        v-for="(item, index) in rili"
         :key="item.id4"
+        v-if="index < 2"
         class="flex flex-wrap bg-white overflow-hidden"
       >
         <div class="w-[100%] mt-4 ml-4 mb-4 flex">
