@@ -3,8 +3,14 @@ import './index.css';
 import { Icon } from '@iconify/vue2';
 // import indexVue from './index.vue'
 import indexVue from './indexView/index2.vue'
-
+import Drawer from '@/components/Drawer.vue'
+Vue.component('Drawer', Drawer)
 Vue.component('Icon', Icon);
+
+
+import { Cell, CellGroup } from 'vant';
+Vue.use(Cell);
+Vue.use(CellGroup);
 
 
 //vm就是根实例 root 具备el，但是其他实例不具备
