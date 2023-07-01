@@ -4,6 +4,8 @@ import { Icon } from '@iconify/vue2';
 // import indexVue from './index.vue'
 import indexVue from './indexView/index2.vue'
 import Drawer from '@/components/Drawer.vue'
+import Switch from '@/components/Switch.vue';
+Vue.component('v-switch', Switch)
 Vue.component('Drawer', Drawer)
 Vue.component('Icon', Icon);
 

@@ -1,7 +1,8 @@
 <template>
     <div @click="clickHandler" >
         <transition :name="direction">
-            <div v-show="visible" class=" bg-slate-100 absolute z-[999]"
+            <div v-show="visible" class="  absolute z-[999]"
+            :class="`${this.switchCheckStatus ? 'bg-gray-900' : 'bg-slate-100'}`"
                 :style="[drawerContentStyle, { width }]">
                 <div>
                     <slot name="header">
@@ -24,6 +25,7 @@
 export default {
     // 单向数据流（父级通过props传递给子组件的数据 子组件没有权利修改）
     props: {
+        switchCheckStatus:'switchCheckStatus',
         visible: {
             type: Boolean,
             required: true,

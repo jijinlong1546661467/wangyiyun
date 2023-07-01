@@ -20,7 +20,8 @@
         v-for="(item, index) in rili"
         :key="item.id4"
         v-if="index < 2"
-        class="flex flex-wrap bg-white overflow-hidden"
+        class="flex flex-wrap   overflow-hidden"
+        :class="`${switchCheckStatus ? 'bg-gray-900' : 'bg-[white]'}`"
       >
         <div class="w-[100%] mt-4 ml-4 mb-4 flex">
           <div class="w-[70%]">
@@ -47,7 +48,7 @@
 <script>
 export default {
   name: 'indexmenu',
-  props: ['rili','formattedDate'],
+  props: ['rili','formattedDate','switchCheckStatus'],
 };
 </script>
 
