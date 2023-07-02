@@ -362,7 +362,6 @@ export default {
 					this.newSubTitle = res.data.data.blocks[5].creatives;
 					this.mainTitle = res.data.data.blocks[3].creatives;
 					this.top = res.data.data
-					console.log(this.top)
 				});
 			axios
 				.get(
