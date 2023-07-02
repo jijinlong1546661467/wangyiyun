@@ -216,10 +216,11 @@
 									<Icon :icon="item[0]" class=" mr-3" />
 									{{ item[1] }}
 								</p>
-								<v-switch v-model="switchCheckStatus" v-if="item[1] === '深色模式'" />
+								<v-switch v-model="switchCheckStatus" v-if="item[1] === '深色模式'" style="margin-left: 105px;" />
 								<div class="flex items-end">
 									<p v-if="item[1] === '边听边存' || item[1] === '青少年模式'" style="font-size: 10px;">未开启</p>
-									<Icon icon="ep:arrow-right" />
+									<Icon v-if="item[1] != '深色模式'" icon="ep:arrow-right" 
+									 />
 								</div>
 							</div>
 						</div>
@@ -408,6 +409,7 @@ export default {
 				},
 			});
 			new Swiper(`.swiper-container6`, {
+				touchMoveStopPropagation: false,
 				slidesPerView: 5,
 				freeMode: true,
 				pagination: {
@@ -416,7 +418,7 @@ export default {
 				}
 			});
 			new Swiper(`.swiper-container2`, {
-				// slidesPerView: 3,
+				touchMoveStopPropagation: false,
 				freeMode: true,
 				pagination: {
 					el: ".swiper-pagination",
