@@ -8,13 +8,15 @@
                 style="border: 1px solid #ccc" />
             <Icon icon="teenyicons:scan-solid" width="25" class="inline-block absolute" style="color: #ccc;right: 15px;top: 7.5px;" />
         </div>
-        <Icon icon="ri:netease-cloud-music-fill" color="black" width="40" class="inline-block" />
+        <Icon icon="ri:netease-cloud-music-fill" width="40" class="inline-block"
+        :color="`${switchCheckStatus ? 'bg-gray-900' : 'bg-slate-100'}`" />
     </div>
 </template>
 
 <script>
     export default {
         name: 'search',
+        props: ['switchCheckStatus'],
     };
 </script>
 

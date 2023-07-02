@@ -10,8 +10,7 @@
                     <div v-for="item in newSongExpress" :key="item.id3" class="swiper-slide flex flex-wrap">
                         <div class="flex mb-4">
                             <div class="w-[20%] mr-2">
-                                <img alt="" :src="item.resources[0].uiElement.image.imageUrl"
-                                    style="border-radius: 10px" />
+                                <img alt="" :src="item.resources[0].uiElement.image.imageUrl" style="border-radius: 10px" />
                             </div>
                             <div class="w-[70%] flex" style="align-content: space-around; flex-wrap: wrap">
                                 <p style="line-height: 30px" class="font-bold w-screen">
@@ -37,8 +36,7 @@
                         </div>
                         <div class="flex mb-4">
                             <div class="w-[20%] mr-2">
-                                <img alt="" :src="item.resources[1].uiElement.image.imageUrl"
-                                    style="border-radius: 10px" />
+                                <img alt="" :src="item.resources[1].uiElement.image.imageUrl" style="border-radius: 10px" />
                             </div>
                             <div class="w-[70%] flex" style="align-content: space-around; flex-wrap: wrap">
                                 <p style="line-height: 30px" class="font-bold w-screen">
@@ -56,8 +54,7 @@
                         </div>
                         <div class="flex mb-4">
                             <div class="w-[20%] mr-2">
-                                <img alt="" :src="item.resources[2].uiElement.image.imageUrl"
-                                    style="border-radius: 10px" />
+                                <img alt="" :src="item.resources[2].uiElement.image.imageUrl" style="border-radius: 10px" />
                             </div>
                             <div class="w-[70%] flex" style="align-content: space-around; flex-wrap: wrap">
                                 <p style="line-height: 30px" class="font-bold w-screen">
@@ -85,11 +82,10 @@
 </template>
 
 <script>
-    export default {
-        name: 'newSongExpress',
-        props: ["newSongExpress","introduce"],
-    };
+export default {
+    name: 'newSongExpress',
+    props: ["newSongExpress", "introduce"],
+};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

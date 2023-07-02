@@ -2,15 +2,13 @@
 	<div :class="{ dark: switchCheckStatus }">
 		<div class="dark bg-slate-100 dark:bg-gray-900 text-[black] dark:text-slate-100 w-[100%] h-[100%]">
 			<div class="w-[92%] " style="margin: 0 auto;padding-top: 12px;" >
-				<!-- <v-switch :value.sync="switchCheckStatus" /> -->
-				<!-- <van-switch :value="switchCheckStatus" @input="e => switchCheckStatus = e" /> -->
 				<!-- 搜索 -->
 				<div class=" relative">
 					<div>
-						<button @click="drawerVisible = !drawerVisible, asd()" class="absolute z-10">
-							<Icon icon="ic:sharp-menu" color="black" width="40" />
+						<button @click="drawerVisible = !drawerVisible, asd()" class="absolute z-10 " >
+							<Icon icon="ic:sharp-menu" width="40" :color="`${switchCheckStatus ? 'bg-gray-900' : 'bg-slate-100'}`"/>
 						</button>
-						<search class="mb-3" />
+						<search class="mb-3" :switchCheckStatus="switchCheckStatus" />
 					</div>
 				</div>
 
@@ -80,9 +78,10 @@
 				<!-- 热门话题 -->
 				<div class="my-3 relative">
 					<p class="text-2xl my-3">热门话题</p>
-					<ul class="overflow-hidden swiper-container7 h-[100%] " style="border-radius: 20px">
+					<ul class="overflow-hidden swiper-container7 h-[100%] " style="border-radius: 20px"
+					:class="`${switchCheckStatus ? 'bg-gray-900' : 'bg-[white]'}`">
 						<div class="p-[20px] swiper-wrapper "
-						:class="`${switchCheckStatus ? 'bg-gray-900' : 'bg-[white]'}`">
+						>
 							<div class="swiper-slide flex">
 								<div class="w-[70%]">
 									<p>最令你感动的那首情歌</p>
@@ -131,7 +130,7 @@
 					</div>
 				</van-popup>
 
-				<Drawer :visible.sync="drawerVisible" direction="ltr">
+				<Drawer :visible.sync="drawerVisible" direction="ltr" :switchCheckStatus="switchCheckStatus">
 					<div class="w-[92%] h-[101vh] overflow-auto " style="margin: 0 auto;">
 						<header class="w-[80vw] h-[14vw] pt-[1vw] flex">
 							<img src="http://p1.music.126.net/6MPDyBrXtrDTRmEU_HkSoQ==/109951168689030052.jpg" alt=""
@@ -177,7 +176,7 @@
 						</div>
 
 						<div class=" mt-5  p-3 " style="border-radius: 10px;"
-						:class="`${switchCheckStatus ? 'bg-gray-900' : 'bg-[white]'}`">
+						:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
 							<div class="flex  justify-between items-center text-[19px] my-3" v-for="(item) in text.first"
 								:key="item.id2">
 								<p class="flex items-center">
@@ -189,7 +188,7 @@
 						</div>
 
 						<div class=" mt-5  p-3" style="border-radius: 10px;"
-						:class="`${switchCheckStatus ? 'bg-gray-900' : 'bg-[white]'}`">
+						:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
 							<p style="border-bottom: 1px solid #ccc;" class=" py-2">音乐服务</p>
 							<div class="flex  justify-between items-center text-[19px]  my-3" v-for="(item) in text.secound"
 								:key="item.id2">
@@ -197,12 +196,18 @@
 									<Icon :icon="item[0]" class=" mr-3" />
 									{{ item[1] }}
 								</p>
-								<Icon icon="ep:arrow-right" />
+								<div class="flex items-end">
+									<p v-if="item[1] === '趣测'" style="font-size: 10px;">点击查看今日运势</p>
+									<p v-if="item[1] === 'Beat专区'" style="font-size: 10px;">顶尖制作邀你创作</p>
+									<p v-if="item[1] === '游戏专区'" style="font-size: 10px;">音乐浇灌治愈花园</p>
+									<Icon icon="ep:arrow-right" />
+								</div>
+								
 							</div>
 						</div>
 
 						<div class=" mt-5 p-3" style="border-radius: 10px;"
-						:class="`${switchCheckStatus ? 'bg-gray-900' : 'bg-[white]'}`">
+						:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
 							<p style="border-bottom: 1px solid #ccc;" class=" py-2">其他</p>
 							<div class="flex  justify-between items-center text-[19px] my-3" v-for="(item) in text.san"
 								:key="item.id2">
@@ -212,12 +217,15 @@
 									{{ item[1] }}
 								</p>
 								<v-switch v-model="switchCheckStatus" v-if="item[1] === '深色模式'" />
-								<Icon v-if="item[1] != '深色模式'" icon="ep:arrow-right" />
+								<div class="flex items-end">
+									<p v-if="item[1] === '边听边存' || item[1] === '青少年模式'" style="font-size: 10px;">未开启</p>
+									<Icon icon="ep:arrow-right" />
+								</div>
 							</div>
 						</div>
 
 						<div class=" mt-5  p-3" style="border-radius: 10px;"
-						:class="`${switchCheckStatus ? 'bg-gray-900' : 'bg-[white]'}`">
+						:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
 							<div class="flex  justify-between items-center text-[19px] my-3" v-for="(item) in text.shi"
 								:key="item.id2">
 								<p class="flex items-center">
@@ -230,7 +238,7 @@
 
 						<div class=" mt-5 mb-5  p-4 h-[70px] text-center leading-[40px]"
 							style="border-radius: 10px;"
-							:class="`${switchCheckStatus ? 'bg-gray-900' : 'bg-[white]'}`">
+							:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
 							<p style="color: red;font-size: 20px;">退出登录/关闭</p>
 						</div>
 					</div>

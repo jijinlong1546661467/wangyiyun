@@ -3,7 +3,6 @@
 		<p class="text-2xl mb-3 flex items-center">
 			推荐歌单
 			<Icon icon="ep:arrow-right-bold" width="20" />
-			<!-- <Icon icon="teenyicons:more-vertical-outline" width="25" class=" ml-[200px]" /> -->
 		</p>
 		<ul class="overflow-hidden rounded-lg">
 			<div class="swiper-container2 h-[100%] w-[33%]">

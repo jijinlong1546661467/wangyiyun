@@ -8,7 +8,6 @@
                     <slot name="header">
                         <div class="flex justify-between items-center">
                             <p>{{ title }}</p>
-                            <!-- <Icon @click.native="closeDrawer" icon="clarity:times-line" /> -->
                         </div>
                     </slot>
                 </div>
