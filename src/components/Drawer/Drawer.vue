@@ -22,6 +22,7 @@
 </template>
 <script>
 export default {
+    name: 'Drawer',
     // 单向数据流（父级通过props传递给子组件的数据 子组件没有权利修改）
     props: {
         switchCheckStatus:'switchCheckStatus',

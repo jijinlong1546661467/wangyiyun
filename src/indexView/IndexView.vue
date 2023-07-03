@@ -264,7 +264,7 @@ import musicMenu from './musicMenu.vue'
 import newSongExpress from './newSongExpress.vue'
 import charts from './charts.vue'
 import musicCalendar from './musicCalendar.vue'
-import Switch from '@/components/Switch.vue';
+import Switch from '@/components/Switch';
 export default {
 	components: {
 		indexmenu,
