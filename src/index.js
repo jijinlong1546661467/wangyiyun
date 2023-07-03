@@ -5,16 +5,40 @@ import { Icon } from '@iconify/vue2';
 import indexVue from './indexView/index2.vue'
 import Drawer from '@/components/Drawer.vue'
 import Switch from '@/components/Switch.vue';
+
+
+
+// 1.引入路由插件
+import VueRouter from 'vue-router'
+// 2.注册路由所提供的全局组件 router-view渲染 router-link跳转
+Vue.use(VueRouter)
+import index2 from './indexView/index2.vue';
+import index from './index.vue';
+// 3.实例化vuerouter
+const router = new VueRouter({
+	// 相当于viewmap
+	routes:[
+		{
+			path:'/index',
+			component:index
+		},
+		{
+			path:'/index2',
+			component:index2
+		},
+	]
+})
+
+
+// 5.
 Vue.component('v-switch', Switch)
 Vue.component('Drawer', Drawer)
 Vue.component('Icon', Icon);
 
 
-import { Cell, CellGroup } from 'vant';
+import { Cell, CellGroup,Popup } from 'vant';
 Vue.use(Cell);
 Vue.use(CellGroup);
-
-import { Popup } from 'vant';
 Vue.use(Popup);
 
 //vm就是根实例 root 具备el，但是其他实例不具备
@@ -27,7 +51,11 @@ Vue.use(Popup);
 const vm = new Vue({
 	//挂载点
 	el: '#app',
-	render: h => h(indexVue)
+	render: h => h(indexVue),
+	// 4.将router注入到root中
+	router,
+
+
 	//指令是出现在模板中
 	//模板语法：指令
 	//模板在一定程度上与html片段非常相似，html+指令 === 模板（template）
