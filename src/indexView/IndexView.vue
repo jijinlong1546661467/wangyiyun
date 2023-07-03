@@ -1,9 +1,9 @@
 <template>
 	<div :class="{ dark: switchCheckStatus }">
 		<div class="dark bg-slate-100 dark:bg-gray-900 text-[black] dark:text-slate-100 w-[100%] h-[100%]">
-			<div class="w-[92%] " style="margin: 0 auto;padding-top: 12px;" >
+			<div class="w-[92%] " style="margin: 0 auto;" >
 				<!-- 搜索 -->
-				<div class=" relative">
+				<div class=" relative  mb-5 pt-5">
 					<div>
 						<button @click="drawerVisible = !drawerVisible, asd()" class="absolute z-10 " >
 							<Icon icon="ic:sharp-menu" width="40" :color="`${switchCheckStatus ? 'bg-gray-900' : 'bg-slate-100'}`"/>
@@ -33,8 +33,8 @@
 					<div>
 						<musicMenu :musicMenu="subTitle" />
 						<button is-link @click="showPopup(), ert = top.blocks[1].uiElement.subTitle.title" class=" absolute"
-							style="right: 0;top: 0;">
-							<Icon icon="teenyicons:more-vertical-outline" width="25" class=" ml-[200px]" />
+							style="right: 0;top: 8px;">
+							<Icon icon="teenyicons:more-vertical-outline" width="15" class=" ml-[200px]" />
 						</button>
 					</div>
 				</div>
@@ -45,8 +45,8 @@
 					<div>
 						<newSongExpress :newSongExpress="newSubTitle" :introduce="introduce" />
 						<button is-link @click="showPopup(), ert = top.blocks[5].uiElement.subTitle.title" class=" absolute"
-							style="right: 0;top: 0;">
-							<Icon icon="teenyicons:more-vertical-outline" width="25" class=" ml-[200px]" />
+							style="right: 0;top: 8px;">
+							<Icon icon="teenyicons:more-vertical-outline" width="15" class=" ml-[200px]" />
 						</button>
 					</div>
 				</div>
@@ -57,8 +57,8 @@
 					<div>
 						<charts :charts="mainTitle" :switchCheckStatus="switchCheckStatus"/>
 						<button is-link @click="showPopup(), ert = top.blocks[3].uiElement.subTitle.title" class=" absolute"
-							style="right: 0;top: 0;">
-							<Icon icon="teenyicons:more-vertical-outline" width="25" class=" ml-[200px]" />
+							style="right: 0;top: 8px;">
+							<Icon icon="teenyicons:more-vertical-outline" width="15" class=" ml-[200px]" />
 						</button>
 					</div>
 				</div>
@@ -68,8 +68,8 @@
 				<div class="my-3 overflow-auto relative ">
 					<div>
 						<musicCalendar :rili="rili" :formattedDate="formattedDate" :switchCheckStatus="switchCheckStatus" />
-						<button is-link @click="showPopup(), ert = '音乐日历'" class=" absolute" style="right: 0;top: 0;">
-							<Icon icon="teenyicons:more-vertical-outline" width="25" class=" ml-[200px]" />
+						<button is-link @click="showPopup(), ert = '音乐日历'" class=" absolute" style="right: 0;top: 8px;">
+							<Icon icon="teenyicons:more-vertical-outline" width="15" class=" ml-[200px]" />
 						</button>
 					</div>
 				</div>
@@ -77,27 +77,26 @@
 
 				<!-- 热门话题 -->
 				<div class="my-3 relative">
-					<p class="text-2xl my-3">热门话题</p>
-					<ul class="overflow-hidden swiper-container7 h-[100%] " style="border-radius: 20px"
-					:class="`${switchCheckStatus ? 'bg-gray-900' : 'bg-[white]'}`">
-						<div class="p-[20px] swiper-wrapper "
-						>
-							<div class="swiper-slide flex">
+					<p class="text-2xl my-3" style="font-size: 4vw">热门话题</p>
+					<ul class="overflow-hidden swiper-container7 h-[100%] " style="border-radius: 20px;"
+					:class="`${switchCheckStatus ? 'bg-gray-600' : 'bg-[white]'}`">
+						<div class=" swiper-wrapper ">
+							<div class="swiper-slide flex p-[20px]" style="">
 								<div class="w-[70%]">
-									<p>最令你感动的那首情歌</p>
-									<p>484万热度</p>
-									<p>Saint_Denis:今日份的感动我希望我们两个之间的爱</p>
+									<p style="font-size: 4vw;">最令你感动的那首情歌</p>
+									<p style="font-size: 2.6vw;color: #ccc;">484万热度</p>
+									<p style="font-size: 2.6vw;">Saint_Denis:今日份的感动我希望我们两个之间的爱</p>
 								</div>
 								<div class="w-[20%]">
 									<img src="http://p1.music.126.net/NkJsOwDqLc2jeHIlCZlluQ==/109951168412701433.jpg"
 										alt="" />
 								</div>
 							</div>
-							<div class="swiper-slide flex">
+							<div class="swiper-slide flex p-[20px]">
 								<div class="w-[70%]">
-									<p>最令你感动的那首情歌</p>
-									<p>484万热度</p>
-									<p>Saint_Denis:今日份的感动我希望我们两个之间的爱</p>
+									<p style="font-size: 4vw;">最令你感动的那首情歌</p>
+									<p style="font-size: 2.6vw;color: #ccc;">484万热度</p>
+									<p style="font-size: 2.6vw;">Saint_Denis:今日份的感动我希望我们两个之间的爱</p>
 								</div>
 								<div class="w-[20%]">
 									<img src="http://p1.music.126.net/QvkcPvcMIMYqBa20DCidjw==/109951168345809467.jpg"
@@ -112,7 +111,7 @@
 				</div>
 				<hr class=" w-screen ml-[-15px]">
 
-				<van-popup v-model="show" position="bottom" round closeable :style="{ height: '25%' }">
+				<van-popup v-model="show" position="bottom" round closeable :style="{ height: '30%' }">
 					<div class="flex justify-between items-center border-b-[0.2vw] py-3 pl-5">
 						<p>{{ ert }}</p>
 					</div>
@@ -130,19 +129,21 @@
 					</div>
 				</van-popup>
 
-				<Drawer :visible.sync="drawerVisible" direction="ltr" :switchCheckStatus="switchCheckStatus">
-					<div class="w-[92%] h-[101vh] overflow-auto " style="margin: 0 auto;">
-						<header class="w-[80vw] h-[14vw] pt-[1vw] flex">
+				<Drawer :visible.sync="drawerVisible" direction="ltr" :switchCheckStatus="switchCheckStatus" >
+					<div class="w-[92%] h-[103vh]  " style="margin: 0 auto;">
+						<header class="w-[77vw] h-[14vw] pt-[1vw] flex items-center fixed"
+						style="top: 0;z-index: 255;"
+						:class="`${this.switchCheckStatus ? 'bg-gray-700' : 'bg-slate-100'}`">
 							<img src="http://p1.music.126.net/6MPDyBrXtrDTRmEU_HkSoQ==/109951168689030052.jpg" alt=""
 								class="w-[12vw] h-[12vw] rounded-[50%] bg-cover">
-							<p class="text-[6vw] font-[700] ml-[3vw] w-[15vw]" style="line-height:14vw ">
+							<p class="text-[4vw] font-[700] ml-3" style="line-height:14vw ">
 								箫默
 							</p>
-							<icon icon="ant-design:right-outlined" class="w-[8vw] h-[8vw] inline-block mt-[3vw] ml-[2vw]" />
-							<icon icon="tabler:scan" class="w-[10vw] h-[10vw] inline-block  ml-[23vw] mt-[2vw] " />
+							<icon icon="ant-design:right-outlined" width="15px" class=" inline-block  ml-[2vw]" style="font-size: 4vw;"/>
+							<icon icon="tabler:scan" style="font-size: 8vw;" class="inline-block ml-[35vw] " />
 						</header>
 
-						<div class=" mt-[6vw] rounded-[4vw] w-[70vw] h-[30vw] pt-[2vw] ml-[2.5vw]"
+						<div class=" mt-[17vw] rounded-[4vw] w-[70vw] h-[30vw] pt-[2vw] ml-[1.5vw]"
 							style="background: rgb(60,58,56);background: linear-gradient(90deg, rgba(60,58,56,1) 0%, rgba(95,81,78,1) 100%);">
 							<p class="h-[6vw] text-[#f9e7de] font-[700] text-[4vw] indent-[1em]">
 								续费黑胶Vip
@@ -177,9 +178,8 @@
 
 						<div class=" mt-5  p-3 " style="border-radius: 10px;"
 						:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
-							<div class="flex  justify-between items-center text-[19px] my-3" v-for="(item) in text.first"
-								:key="item.id2">
-								<p class="flex items-center">
+							<div class="flex  justify-between items-center text-[19px] my-3" v-for="(item) in text.first" :key="item.id2">
+								<p class="flex items-center" style="font-size: 3.5vw;">
 									<Icon :icon="item[0]" class=" mr-3" />
 									{{ item[1] }}
 								</p>
@@ -189,14 +189,14 @@
 
 						<div class=" mt-5  p-3" style="border-radius: 10px;"
 						:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
-							<p style="border-bottom: 1px solid #ccc;" class=" py-2">音乐服务</p>
+							<p style="border-bottom: 1px solid #ccc;font-size: 3.5vw;" class=" py-2">音乐服务</p>
 							<div class="flex  justify-between items-center text-[19px]  my-3" v-for="(item) in text.secound"
 								:key="item.id2">
-								<p class="flex items-center">
+								<p class="flex items-center" style="font-size: 3.5vw;">
 									<Icon :icon="item[0]" class=" mr-3" />
 									{{ item[1] }}
 								</p>
-								<div class="flex items-end">
+								<div class="flex items-end" style="font-size: 3.5vw;">
 									<p v-if="item[1] === '趣测'" style="font-size: 10px;">点击查看今日运势</p>
 									<p v-if="item[1] === 'Beat专区'" style="font-size: 10px;">顶尖制作邀你创作</p>
 									<p v-if="item[1] === '游戏专区'" style="font-size: 10px;">音乐浇灌治愈花园</p>
@@ -208,11 +208,11 @@
 
 						<div class=" mt-5 p-3" style="border-radius: 10px;"
 						:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
-							<p style="border-bottom: 1px solid #ccc;" class=" py-2">其他</p>
+							<p style="border-bottom: 1px solid #ccc; font-size: 3.5vw;" class=" py-2">其他</p>
 							<div class="flex  justify-between items-center text-[19px] my-3" v-for="(item) in text.san"
 								:key="item.id2">
 
-								<p class="flex items-center">
+								<p class="flex items-center" style="font-size: 3.5vw;">
 									<Icon :icon="item[0]" class=" mr-3" />
 									{{ item[1] }}
 								</p>
@@ -229,7 +229,7 @@
 						:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
 							<div class="flex  justify-between items-center text-[19px] my-3" v-for="(item) in text.shi"
 								:key="item.id2">
-								<p class="flex items-center">
+								<p class="flex items-center" style="font-size: 3.5vw;">
 									<Icon :icon="item[0]" class=" mr-3" />
 									{{ item[1] }}
 								</p>
@@ -240,11 +240,10 @@
 						<div class=" mt-5 mb-5  p-4 h-[70px] text-center leading-[40px]"
 							style="border-radius: 10px;"
 							:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
-							<p style="color: red;font-size: 20px;">退出登录/关闭</p>
+							<p style="color: red;font-size: 3.5vw;">退出登录/关闭</p>
 						</div>
 					</div>
 				</Drawer>
-
 			</div>
 		</div>
 	</div>
@@ -257,13 +256,13 @@ import '../../node_modules/swiper/css/swiper.css';
 import '../../node_modules/vant/lib/index.css'
 
 
-import indexmenu from './menu.vue';
-import banner from './banner.vue';
-import search from './search.vue';
-import musicMenu from './musicMenu.vue'
-import newSongExpress from './newSongExpress.vue'
-import charts from './charts.vue'
-import musicCalendar from './musicCalendar.vue'
+import indexmenu from '@/components/menu.vue';
+import banner from '@/components/banner.vue';
+import search from '@/components/search.vue';
+import musicMenu from '@/components/musicMenu.vue'
+import newSongExpress from '@/components/newSongExpress.vue'
+import charts from '@/components/charts.vue'
+import musicCalendar from '@/components/musicCalendar.vue'
 import Switch from '@/components/Switch';
 export default {
 	components: {

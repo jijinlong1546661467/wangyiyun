@@ -19,3 +19,7 @@ new Vue({
 	template: '<App/>',
 });
 
+import BScroll from '@better-scroll/core'
+import ScrollBar from '@better-scroll/scroll-bar'
+
+BScroll.use(ScrollBar)

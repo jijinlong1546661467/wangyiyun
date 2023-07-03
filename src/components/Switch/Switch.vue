@@ -1,5 +1,5 @@
 <template>
-    <div class="w-[50px] h-[30px] rounded-[15px]" :class="`${value ? 'bg-red-400' : 'bg-black'}`" @click="toggle">
+    <div class="w-[50px] h-[30px] rounded-[15px] "  :class="`${value ? 'bg-red-700' : 'bg-black'}`" @click="toggle">
         <div class="w-[30px] h-[30px] rounded-[15px] bg-white transition-all"
             :class="`${value ? 'translate-x-[20px]' : 'translate-x-0'}`"></div>
     </div>

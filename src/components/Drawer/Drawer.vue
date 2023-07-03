@@ -1,7 +1,7 @@
 <template>
     <div @click="clickHandler" >
         <transition :name="direction">
-            <div v-show="visible" class="  absolute z-[999]"
+            <div v-show="visible" class="absolute z-[999]" style="overflow: auto;"
             :class="`${this.switchCheckStatus ? 'bg-gray-900' : 'bg-slate-100'}`"
                 :style="[drawerContentStyle, { width }]">
                 <div>

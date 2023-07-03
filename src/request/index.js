@@ -17,3 +17,10 @@ export const fetchSearchSuggest = (keywords) =>
   http.get('/search/suggest', { params: { keywords } });
 
 export const fetchHomeData = () => http.get('/homepage/block/page');
+
+
+export async function fetchToplistDetail() {
+  const res = await http.get('/toplist/detail');
+  const playlist = await Promise.all(res.data.list.map(({ id }) => http.get('playlist/detail', { params: { id } })));
+  return playlist.map(item => item.data.playlist)
+}
