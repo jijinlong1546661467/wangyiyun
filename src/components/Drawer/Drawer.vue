@@ -92,6 +92,9 @@ export default {
 };
 </script>
 <style scoped>
+::-webkit-scrollbar{
+    display: none;
+}
 .ltr-enter,
 .ltr-leave-to {
     transform: translateX(-100%);

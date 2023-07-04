@@ -133,7 +133,7 @@
 					<div class="w-[92%] h-[103vh]  " style="margin: 0 auto;">
 						<header class="w-[77vw] h-[14vw] pt-[1vw] flex items-center fixed"
 						style="top: 0;z-index: 255;"
-						:class="`${this.switchCheckStatus ? 'bg-gray-700' : 'bg-slate-100'}`">
+						:class="`${this.switchCheckStatus ? 'bg-gray-900' : 'bg-slate-100'}`">
 							<img src="http://p1.music.126.net/6MPDyBrXtrDTRmEU_HkSoQ==/109951168689030052.jpg" alt=""
 								class="w-[12vw] h-[12vw] rounded-[50%] bg-cover">
 							<p class="text-[4vw] font-[700] ml-3" style="line-height:14vw ">
