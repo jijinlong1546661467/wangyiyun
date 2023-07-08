@@ -4,7 +4,7 @@ export default [
   // 路径重定向
   {
     path: '/',
-    redirect: '/Login',
+    redirect: '/0708',
   },
   {
     path: '/HomeView',
@@ -28,5 +28,21 @@ export default [
     path: '/Login',
     //懒加载组件
     component: () => import('@/indexView/Login.vue')
-  }
+  },
+  {
+    path: '/MyHome',
+    //懒加载组件
+    component: () => import('@/indexView/MyHome.jsx')
+  },
+  {
+    path: '/0708',
+    //懒加载组件
+    component: () => import('@/indexView/Feat-0708.vue')
+  },
+  {
+    path: '/BianJizliao',
+    //懒加载组件
+    component: () => import('@/indexView/BianJizliao.vue')
+  },
+
 ];

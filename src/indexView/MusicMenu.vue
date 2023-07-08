@@ -17,8 +17,7 @@
                     {{ title }}
                 </span>
                 <p class=" text-[#fbfbf5] font-[700] line-clamp-2 w-[60vw]" v-if="scrollDistance > 45">
-                    <van-notice-bar scrollable :text= musicData.playlist?.name color="white"
-                    background="#927d4d" />
+                    <van-notice-bar scrollable :text=musicData.playlist?.name color="white" background="#927d4d" />
                 </p>
             </div>
             <div class="justify-between flex w-[20vw]">
@@ -177,7 +176,7 @@
                                 <span v-if="item.ar[1]">
                                     /
                                 </span>
-                                {{ item?.ar[1]?.name }} 
+                                {{ item?.ar[1]?.name }}
                                 <span v-if="item.name">
                                     -
                                 </span>
@@ -251,7 +250,7 @@ export default {
             )
             .then((res) => {
                 this.musicmMean = res.data;
-                console.log(this.musicmMean.songs)
+                // console.log(this.musicmMean.songs)
             })
             .catch((err) => {
                 console.log(err);
@@ -262,7 +261,7 @@ export default {
             )
             .then((res) => {
                 this.musicSlider = res.data;
-                console.log(this.musicSlider);
+                // console.log(this.musicSlider);
             })
             .catch((err) => {
                 console.log(err);
@@ -272,9 +271,10 @@ export default {
 </script>
 
 <style>
-.van-notice-bar{
+.van-notice-bar {
     font-size: 5vw !important;
 }
+
 li {
     list-style: none;
 }
