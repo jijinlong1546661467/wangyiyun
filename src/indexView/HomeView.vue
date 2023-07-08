@@ -139,9 +139,22 @@
 							:class="`${this.switchCheckStatus ? 'bg-gray-900' : 'bg-slate-100'}`">
 							<div class="w-[38.5vw] flex items-center">
 								<img :src="headImg" alt="" class="w-[12vw] h-[12vw] rounded-[50%] bg-cover">
-								<p class="text-[2vw] font-[700] ml-3 " style="display: inline;">
-									{{ userName }}
-								</p>
+
+								<div v-if="(cookie !== undefined && cookie!== null)">
+									<router-link :to="{ path: `/MyHome` }">
+										<p class="text-[2vw] font-[700] ml-3 " style="display: inline;">
+											{{ userName }}
+										</p>
+									</router-link>
+								</div>
+								<div v-else-if="(cookie == undefined || cookie== null)">
+									<router-link :to="{ path: `/Login` }">
+										<p class="text-[2vw] font-[700] ml-3 " style="display: inline;">
+											前往登录
+										</p>
+									</router-link>
+								</div>
+								
 							</div>
 
 							<div class="flex w-[36.5vw] justify-between items-center">
@@ -263,12 +276,11 @@
 //引入axios方法获取用户详情
 import { logout, fetchHomeData, loginStatus } from '@/request'
 
-
+import store from 'storejs';
 import axios from 'axios';
 import Swiper from 'swiper';
 import '../../node_modules/swiper/css/swiper.css';
-import '../../node_modules/vant/lib/index.css'
-import indexmenu from '@/components/menu.vue';
+import indexmenu from '@/components/Menu';
 import banner from '@/components/banner.vue';
 import search from '@/components/search.vue';
 import musicMenu from '@/components/musicMenu.vue'
@@ -360,9 +372,10 @@ export default {
 			//推荐歌单的ID值
 			id: [],
 			//用户名
-			userName: '游客',
+			userName: '前往登录',
 			//头像
-			headImg: ''
+			headImg: '',
+			cookie: store.get('__m__cookie'),
 		};
 	},
 	methods: {
@@ -494,6 +507,6 @@ html {
 
 body {
 	max-width: 390px;
-	
+
 }
 </style>
