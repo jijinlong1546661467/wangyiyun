@@ -1,19 +1,13 @@
 <template>
     <div class="w-screen h-screen">
-        <!-- 声明式导航 -->
-        <!-- <router-link :to="{ path: '/IndexView/123' }">go to index</router-link> -->
-        <!-- <router-link :to="{ path: '/MineView' }">go to Mine</router-link> -->
         <router-view />
+        <Player />
     </div>
 </template>
 <script>
+import Player from "@/components/player/Player.vue"
 export default {
-    created() {
-        // setTimeout(() => {
-        //   // 编程式导航
-        //   this.$router.push('/IndexView');
-        // }, 10000);
-    },
+    components:{Player},
 };
 </script>
 <style>

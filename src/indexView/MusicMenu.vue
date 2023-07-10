@@ -139,7 +139,7 @@
             <div class="h-[15vw] flex " style="justify-content: space-between;"
                 :class="`${scrollDistance >= 200 ? 'fixed top-[14vw] z-[999] right-0 left-0 w-[100%] pl-[3vw] pr-[3vw] bg-[white]' : ''}`">
                 <p class="w-[34vw] flex h-[100%] items-center justify-around">
-                    <Icon icon="teenyicons:play-circle-solid" class="font-[6vw] text-[#ff3726]" />
+                    <Icon @click.native="playAll" icon="teenyicons:play-circle-solid" class="font-[6vw] text-[#ff3726]" />
                     <span class="font-[600] text-[3.5vw]">播放全部</span>
                     <span class="text-[#dbdbd6] text-[3vw]">
                         ({{ musicData.playlist?.trackCount }})
@@ -213,6 +213,10 @@ export default {
         }
     },
     methods: {
+        playAll(){
+            window.$player.replacePlaylist(this.musicmMean.songs.map(song=>song.id),
+            '','')
+        },
         handleArrowUpClick() {
             this.condition = !this.condition
         },
