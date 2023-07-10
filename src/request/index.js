@@ -17,7 +17,7 @@ http.interceptors.request.use(function (config) {
 export const fetchPlaylistHot = () => http.get('/playlist/hot');
 export const fetchPlaylists = (cat) =>
 	http.get('/top/playlist', { params: { cat } });
-	
+
 /**
  * @description 获取默认搜索关键词
  */
@@ -78,7 +78,7 @@ export const userFolloweds = (params) => http.get(`/user/followeds?uid=${params}
 export const userEvent = (params) => http.get(`/user/event?uid=${params}`)
 
 //获取实际地址
-export const myIP = (params)=>ipData.get(`/${params}`)
+export const myIP = (params) => ipData.get(`/${params}`)
 
 //获取用户详情
 export const userDetail = (params) => http.get(`/user/detail?uid=${params}`)
@@ -87,6 +87,11 @@ export const userDetail = (params) => http.get(`/user/detail?uid=${params}`)
 * @descriptiong 获取账户信息
 */
 export const fetchUserDetail = (uid) => http.get('/user/detail', { params: { uid } });
+
+/**
+* @descriptiong 更新用户信息
+*/
+export const updateUser = (params) => http.get(`/user/update?${params}`);
 
 /**
 * @descriptiong 获取用户歌单
@@ -116,3 +121,9 @@ export async function fetchToplistDetail() {
 			})));
 	return playlist.map(item => item.data.playlist)
 }
+
+export const getMP3 = (id) =>
+	http.get(`/song/url/v1`, { params: { id, level: 'standard' } })
+
+export const getTrackDetail = (id) => http.get('/song/detail', { params: { ids: id } });
+
