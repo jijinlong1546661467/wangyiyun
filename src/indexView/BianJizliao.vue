@@ -112,15 +112,10 @@ export default {
         this.userName = loginStatu.data.data.profile.nickname
         //头像
         this.headImg = loginStatu.data.data.profile.avatarUrl
-
-
-
-        const userSubcount = await fetchUserSubcount()
         
         //获取用户详情
         const userAccount = await fetchUserAccount()
         const userDateil = await userDetail(userAccount.data.account.id)
-        console.log(userDateil, userAccount,userSubcount)
         //判断有没有设置生日
         if (userAccount.data.profile.birthday > 0) {
             this.birthday = this.getBirthday(userAccount.data.profile.birthday)

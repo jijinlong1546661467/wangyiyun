@@ -4,7 +4,7 @@ export default [
   // 路径重定向
   {
     path: '/',
-    redirect: '/0708',
+    redirect: '/MyHome',
   },
   {
     path: '/HomeView',

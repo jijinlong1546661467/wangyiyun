@@ -9,7 +9,7 @@
         </div>
         <!-- logo -->
         <div class="flex justify-center pt-[15vw]">
-            <!-- <img src="..atic/logo.fill.svg" alt="SVG Image" class="w-[39vw] h-[7vw]" /> -->
+            <!-- <img src="..atic/logo.svg" alt="SVG Image" class="w-[39vw] h-[7vw]" /> -->
             <Icon icon="ri:netease-cloud-music-fill" color="red" class=" w-[7vw] h-[7vw]" />
             <p class="text-[5vw] font-[600] pl-3">网易云音乐</p>
         </div>
@@ -40,7 +40,7 @@
 
         <div v-if="state == 803">
             <div class="flex justify-center mt-[10vw]">
-                <!-- <img src="../static/logo.svg" alt="SVG Image" class="w-[39vw] h-[7vw]" /> -->
+                <img src="/static/tangshiren.png"  class="w-[39vw] h-[40vw]" />
             </div>
             <div class="flex justify-center mt-[8vw]">
                 <p class="text-[5vw]">扫描成功</p>
@@ -64,7 +64,7 @@ export default {
         };
     },
     methods: {
-        pollingCheck(key, interval = 3000) {
+        pollingCheck(key, interval = 1000) {
             const timer = setInterval(async () => {
                 const res = await checkQrStatus(key);
                 if (res.data.code === 800) {
