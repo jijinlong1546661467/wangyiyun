@@ -20,6 +20,10 @@ module.exports = {
 				},
 			},
 			{
+				test: /\.png$/,
+				use: 'file-loader'
+			},
+			{
 				test: /\.vue$/,
 				loader: 'vue-loader'
 			},
@@ -37,7 +41,7 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.(woff | eot | ttf | otf | svg)$/,
+				test: /\.(woff | eot | ttf | otf | svg | png)$/,
 				type: 'asset/resource',
 			},
 			{

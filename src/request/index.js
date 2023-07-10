@@ -17,6 +17,7 @@ http.interceptors.request.use(function (config) {
 export const fetchPlaylistHot = () => http.get('/playlist/hot');
 export const fetchPlaylists = (cat) =>
 	http.get('/top/playlist', { params: { cat } });
+	
 /**
  * @description 获取默认搜索关键词
  */
@@ -45,7 +46,9 @@ export const getUserAccount = () => {
 
 export const getUserDetail = () => http.get('/user/detail', { params: { uid } })
 
-//获取账号信息
+/**
+* @descriptiong 获取账户信息
+*/
 export const fetchUserAccount = () => http.get('/user/account')
 
 export const fetchUserSubcount = () => http.get('/user/subcount')
@@ -80,17 +83,29 @@ export const myIP = (params)=>ipData.get(`/${params}`)
 //获取用户详情
 export const userDetail = (params) => http.get(`/user/detail?uid=${params}`)
 
+/**
+* @descriptiong 获取账户信息
+*/
+export const fetchUserDetail = (uid) => http.get('/user/detail', { params: { uid } });
 
+/**
+* @descriptiong 获取用户歌单
+*/
+export const fetchUserPlaylist = (uid) => http.get('/user/playlist', { params: { uid } });
 
+/**
+* @descriptiong 获取用户评论
+*/
+export const fetchUserHistory = (uid) => http.get('/user/comment/history', { params: { uid } });
+/**
+* @descriptiong 转发的动态
+*/
+export const fetchUserdynamics = (uid) => http.get('/user/event/forward', { params: { uid } });
 
-
-
-
-
-
-
-
-
+/**
+* @descriptiong 播客/电台
+*/
+export const fetchdj = (uid) => http.get('/user/subcount', { params: { uid } });
 
 export async function fetchToplistDetail() {
 	const res = await http.get('/toplist/detail');
