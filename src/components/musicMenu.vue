@@ -39,8 +39,7 @@
 							</div>
 						</div>
 					</div>
-					<div v-for="(item, index) in musicMenu" :key="item.id2" class="swiper-slide mr-4 relative cli"
-						>
+					<div v-for="(item, index) in musicMenu" :key="item.id2" class="swiper-slide mr-4 relative cli">
 						<router-link :to="{ path: `/MusicMenu/${id[index]}` }">
 							<img alt="" :src="item.uiElement.image.imageUrl"
 								style="border-radius: 10px; height: 119px; width: 119px" />
@@ -48,7 +47,7 @@
 								{{ item.uiElement.mainTitle.title }}
 							</p>
 							<p class="absolute" style="top: 10px; right: 10px; color: white;font-size: 2.78vw;">
-								{{ Math.floor(item.resources[0].resourceExtInfo.playCount / 10000) }} 万
+								{{ dataTruncation(item.resources[0].resourceExtInfo.playCount) }}
 							</p>
 						</router-link>
 					</div>
@@ -73,6 +72,18 @@ export default {
 			this.visible = !this.visible
 		}, 3000)
 	},
+	methods: {
+		// 截取时间
+		dataTruncation(playVolume) {
+			if (playVolume > 100000000) {
+				return `${(playVolume / 100000000).toFixed(2)}亿`;
+			} else if (playVolume > 100000) {
+				return `${(playVolume / 10000).toFixed(2)}万`;
+			} else {
+				return playVolume?.toString();
+			}
+		},
+	}
 };
 </script>
 

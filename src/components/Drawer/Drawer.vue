@@ -1,8 +1,8 @@
 <template>
-    <div @click="clickHandler" >
+    <div @click="clickHandler">
         <transition :name="direction">
             <div v-show="visible" class="absolute z-[999]" style="overflow: auto;"
-            :class="`${this.switchCheckStatus ? 'bg-gray-900' : 'bg-slate-100'}`"
+                :class="`${this.switchCheckStatus ? 'bg-gray-900' : 'bg-slate-100'}`"
                 :style="[drawerContentStyle, { width }]">
                 <div>
                     <slot name="header">
@@ -16,7 +16,8 @@
                 </div>
             </div>
         </transition>
-        <div v-if="visible" ref="drawerMask" class="bg-black opacity-20 h-[101vh] absolute top-0 right-0 bottom-0 left-0 z-[998]">
+        <div v-if="visible" ref="drawerMask"
+            class="bg-black opacity-20 h-[101vh] absolute top-0 right-0 bottom-0 left-0 z-[998]">
         </div>
     </div>
 </template>
@@ -25,7 +26,10 @@ export default {
     name: 'Drawer',
     // 单向数据流（父级通过props传递给子组件的数据 子组件没有权利修改）
     props: {
-        switchCheckStatus:'switchCheckStatus',
+        switchCheckStatus: {
+            type: Boolean, // 或者其他合适的数据类型
+            required: true // 可选，根据你的需求设置
+        },
         visible: {
             type: Boolean,
             required: true,
@@ -92,13 +96,14 @@ export default {
 };
 </script>
 <style scoped>
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     display: none;
 }
+
 .ltr-enter,
 .ltr-leave-to {
     transform: translateX(-100%);
-    
+
 }
 
 .ltr-enter-active,

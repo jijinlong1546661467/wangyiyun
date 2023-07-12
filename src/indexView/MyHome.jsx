@@ -100,7 +100,7 @@ export default {
 				<div class="xuanxiangka">
 					{/* 上部分 个人信息 */}
 					<div class=" text-center relative bg-white" style="border-radius: 5vw;">
-						<div class="flex flex-col items-center relative" style={{ opacity:1-this.scrollThreshold * 0.002849 }}>
+						<div class="flex flex-col items-center relative" style={{ opacity: 1 - this.scrollThreshold * 0.002849 }}>
 							<img src={this.headImg} alt="" class=" absolute top-[-9vw]  w-[18vw] h-[18vw]" style="border-radius: 50%;" />
 							<p class="mt-[10vw] font-[540]" style="font-size:5vw; ">{this.userName}</p>
 						</div>
@@ -572,5 +572,4 @@ export default {
 	beforeDestroy() {
 		window.removeEventListener('scroll', this.handleScroll);
 	},
-
 }

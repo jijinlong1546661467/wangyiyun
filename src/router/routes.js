@@ -45,14 +45,15 @@ export default [
     component: () => import('@/indexView/BianJizliao.vue')
   },
   {
-    path: '/changeName',
-    //懒加载组件
-    component: () => import('@/components/changeName.vue')
-  },
-  {
     path: '/Current',
     //懒加载组件
     component: () => import('@/components/Current.vue')
   },
+  {
+    path: '/MusicPlayback',
+    //懒加载组件
+    component: () => import('@/components/MusicPlayback/MusicPlayback.vue')
+  },
+
 
 ];

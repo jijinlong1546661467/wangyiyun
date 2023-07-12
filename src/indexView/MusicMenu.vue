@@ -39,7 +39,7 @@
                                 <span class="text-[#ffffff] whitespace-nowrap text-right text-[2.3vw]">
                                     <icon icon="solar:play-bold"
                                         class="float-left text-[2.3vw] text-[#ffffff] mt-[0.8vw] pr-[1vw]" />
-                                    {{ Math.floor(musicData.playlist?.playCount / 10000) }}万
+                                    {{ dataTruncation(musicData.playlist?.playCount) }}
                                 </span>
                             </div>
                             <div class="w-[20vw] h-[25vw] bg-[#9a8e73] absolute top-[0vw] left-[2vw] rounded-[6px] z-[0]">
@@ -103,18 +103,18 @@
             <p
                 class="w-[29vw] h-[10vw] bg-[#b7a47c] text-[3.5vw] rounded-[5vw] font-[700] text-[#fff] text-center flex leading-[10vw] justify-center items-center">
                 <Icon icon="fa:mail-forward" width="15" class="text-[#fff] mr-[1.5vw]" />
-                {{ musicData.playlist?.shareCount }}
+                {{ dataTruncation(musicData.playlist?.shareCount) }}
             </p>
             <p
                 class="w-[29vw] h-[10vw] bg-[#b7a47c] text-[3.5vw] rounded-[5vw] font-[700] text-[#fff] text-center flex leading-[10vw] justify-center items-center">
                 <Icon icon="streamline:mail-chat-bubble-typing-oval-messages-message-bubble-typing-chat"
                     class="text-[#fff] mr-[1.5vw]" width="15" />
-                {{ musicData.playlist?.commentCount }}
+                {{ dataTruncation(musicData.playlist?.commentCount) }}
             </p>
             <p
                 class="w-[29vw] h-[10vw] text-[3.5vw] rounded-[5vw] font-[700] text-[#fff] text-center bg-[#fd2658] flex leading-[10vw] justify-center items-center">
                 <Icon icon="fluent:collections-24-filled" width="15" class="text-[#fff] mr-[1.5vw]" />
-                {{ musicData.playlist?.subscribedCount }}
+                {{ dataTruncation(musicData.playlist?.subscribedCount) }}
             </p>
         </div>
 
@@ -151,23 +151,26 @@
                 </p>
             </div>
 
-            <div>
-                <li class="h-[11vw] flex mt-[5vw]" v-for="(item, index) in musicmMean.songs " :key="item.id">
+            <div class="pb-[12vw] overflow-hidden">
+                <li class="h-[11vw] flex mt-[5vw]" v-for="(item, index) in musicmMean.songs " :key="item.id" :class="index == 0 ? 'mt-0' : ''" @click="playNum(index)">
                     <div class="text-[#a5a5a5] h-[100%] w-[5vw] flex" style="align-items: center;">
                         {{ index + 1 }}
                     </div>
                     <div class=" relative ml-4 leading-[5vw] flex w-[90%] justify-between">
                         <div class="flex w-[80vw]" style="flex-direction: column;">
-                            <p class="text-[3vw]">
+                            <p class="text-[3vw] w-[60vw] overflow-hidden overflow-ellipsis whitespace-nowrap "
+                            :class="{ 'text-[red]': index == activeIndex }" >
                                 {{ item.name }}
-                                <span v-if="item.tns" class="text-[#ccc]">
+                                <span v-if="item.tns" class="text-[#ccc]"
+                                :class="{ 'text-[red]': index == activeIndex }">
                                     ({{ item.tns[0] }})
                                 </span>
-                                <span v-if="item.alia" class="text-[#ccc]">
+                                <span v-if="item.alia" class="text-[#ccc]"
+                                :class="{ 'text-[red]': index == activeIndex }">
                                     {{ item.alia[0] }}
                                 </span>
                             </p>
-                            <p class="text-[2vw] text-[#ccc]">
+                            <p class="text-[2vw] text-[#ccc] w-[60vw] overflow-hidden overflow-ellipsis whitespace-nowrap ">
                                 <span class="text-[#baa04e] text-[1.5vw] py-[1.5px] pl-[3px] mr-1 rounded"
                                     style="border: 1px solid #baa04e;">
                                     超清母带
@@ -181,26 +184,30 @@
                                     -
                                 </span>
                                 {{ item?.name }}
-
                             </p>
                         </div>
                         <div>
-                            <Icon icon="teenyicons:more-vertical-outline" class="text-[5vw] text-[#ccc] absolute"
-                                style="right: 0;" />
+                            <Icon icon="formkit:playcircle" class="text-[5vw] text-[#ccc] absolute" style="right: 9vw; top: 3vw;"/>
+                            <!-- <Icon icon="zondicons:pause-outline" /> -->
+                            <Icon icon="teenyicons:more-vertical-outline" class="text-[5vw] text-[#ccc] absolute" style="right: 0;top: 3vw;" />
                         </div>
                     </div>
                 </li>
             </div>
         </div>
+        <Player :musicNenu="musicmMean"/>
     </div>
 </template>
 
 
 <script>
+import Player from "@/components/player/Player.vue"
 import axios from 'axios';
 export default {
+    components: { Player },
     data() {
         return {
+            activeIndex: null,
             id: 0,
             musicData: [],
             musicmMean: [],
@@ -213,18 +220,36 @@ export default {
         }
     },
     methods: {
-        playAll(){
-            window.$player.replacePlaylist(this.musicmMean.songs.map(song=>song.id),
-            '','')
+        // 截取时间
+        dataTruncation(playVolume) {
+            if (playVolume > 100000000) {
+                return `${(playVolume / 100000000).toFixed(2)}亿`;
+            } else if (playVolume > 100000) {
+                return `${(playVolume / 10000).toFixed(2)}万`;
+            } else {
+                return playVolume?.toString();
+            }
+        },
+        //播放全部
+        playAll() {
+            window.$player.replacePlaylist(this.musicmMean.songs.map(song => song.id),
+                '', '')
+        },
+        //播放点击的
+        playNum(index){
+            this.activeIndex = index;
+            window.$player._replaceCurrentTrack(this.musicmMean.songs[index].id,)
         },
         handleArrowUpClick() {
             this.condition = !this.condition
         },
+        //获取歌单ID
         local() {
             let url = window.location.href
             let index = url.lastIndexOf("/") + 1
             this.id = url.slice(index)
         },
+        //判断滚动距离
         scrollNum() {
             this.scrollDistance = document.documentElement.scrollTop || document.body.scrollTop;
         }
@@ -254,7 +279,6 @@ export default {
             )
             .then((res) => {
                 this.musicmMean = res.data;
-                // console.log(this.musicmMean.songs)
             })
             .catch((err) => {
                 console.log(err);
@@ -265,7 +289,6 @@ export default {
             )
             .then((res) => {
                 this.musicSlider = res.data;
-                // console.log(this.musicSlider);
             })
             .catch((err) => {
                 console.log(err);

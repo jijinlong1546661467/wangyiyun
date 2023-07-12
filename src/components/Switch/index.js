@@ -1,5 +1,5 @@
-import Switch from './Switch.vue';
-Switch.install = function (V) {
-  V.component('v-switch', Switch);
+import MySwitch from './MySwitch.vue';
+MySwitch.install = function (V) {
+  V.component('v-switch', MySwitch);
 }
-export default Switch
+export default MySwitch
