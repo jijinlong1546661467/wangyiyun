@@ -283,7 +283,7 @@ import musicMenu from '@/components/musicMenu.vue'
 import newSongExpress from '@/components/newSongExpress.vue'
 import charts from '@/components/charts.vue'
 import musicCalendar from '@/components/musicCalendar.vue'
-import Switch from '@/components/Switch';
+import MySwitch from '@/components/MySwitch';
 export default {
 	components: {
 		indexmenu,
@@ -293,7 +293,7 @@ export default {
 		newSongExpress,
 		charts,
 		musicCalendar,
-		Switch
+		MySwitch
 	},
 	data() {
 		return {
