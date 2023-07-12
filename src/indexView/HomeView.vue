@@ -139,7 +139,6 @@
 							:class="`${this.switchCheckStatus ? 'bg-gray-900' : 'bg-slate-100'}`">
 							<div class="w-[38.5vw] flex items-center">
 								<img :src="headImg" alt="" class="w-[12vw] h-[12vw] rounded-[50%] bg-cover">
-
 								<div v-if="(cookie !== undefined && cookie!== null)">
 									<router-link :to="{ path: `/MyHome` }">
 										<p class="text-[2vw] font-[700] ml-3 " style="display: inline;">
@@ -154,7 +153,6 @@
 										</p>
 									</router-link>
 								</div>
-								
 							</div>
 
 							<div class="flex w-[36.5vw] justify-between items-center">
@@ -219,7 +217,7 @@
 									<Icon :icon="item[0]" class=" mr-3" />
 									{{ item[1] }}
 								</p>
-								<div class="flex items-end" style="font-size: 3.5vw;">
+								<div class="flex items-center" style="font-size: 3.5vw;">
 									<p v-if="item[1] === '趣测'" style="font-size: 10px;">点击查看今日运势</p>
 									<p v-if="item[1] === 'Beat专区'" style="font-size: 10px;">顶尖制作邀你创作</p>
 									<p v-if="item[1] === '游戏专区'" style="font-size: 10px;">音乐浇灌治愈花园</p>
@@ -234,7 +232,6 @@
 							<p style="border-bottom: 1px solid #ccc; font-size: 3.5vw;" class=" py-2">其他</p>
 							<div class="flex  justify-between items-center text-[19px] my-3" v-for="(item) in text.san"
 								:key="item.id2">
-
 								<p class="flex items-center" style="font-size: 3.5vw;">
 									<Icon :icon="item[0]" class=" mr-3" />
 									{{ item[1] }}
@@ -247,7 +244,6 @@
 								</div>
 							</div>
 						</div>
-
 						<div class=" mt-5  p-3" style="border-radius: 10px;"
 							:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
 							<div class="flex  justify-between items-center text-[19px] my-3" v-for="(item) in text.shi"
@@ -266,8 +262,6 @@
 						</div>
 					</div>
 				</Drawer>
-
-				
 			</div>
 		</div>
 	</div>
@@ -380,7 +374,7 @@ export default {
 			cookie: store.get('__m__cookie'),
 		};
 	},
-	methods: {
+	methods: {		
 		//退出登录，清除cookie
 		cleanCookie() {
 			logout()
@@ -487,7 +481,7 @@ export default {
 		this.top = res.data.data
 		//获取推荐歌单的id
 		this.changeID()
-		axios
+		await axios
 			.get(
 				`https://netease-cloud-music-api-five-roan-88.vercel.app/calendar?startTime=${this.startOfDayTimestamp}&endTime=${this.endOfDayTimestamp}`
 			)

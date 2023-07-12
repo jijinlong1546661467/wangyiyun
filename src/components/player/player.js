@@ -66,7 +66,11 @@ export default class {
     }, 1000);
   }
 
-  _replaceCurrentTrack(id, autoplay = true, ifUnplayableThen = 'playNextTrack') {
+  _replaceCurrentTrack(
+    id,
+    autoplay = true,
+    ifUnplayableThen = 'playNextTrack'
+  ) {
     return getTrackDetail(id).then((data) => {
       const track = data.data.songs[0];
       this._currentTrack = track;
@@ -76,13 +80,16 @@ export default class {
           // this._cacheNextTrack();
           return source;
         }
-        ifUnplayableThen === 'playNextTrack' ? this.playNextTrack() : this.playPrevTrack();
+        ifUnplayableThen === 'playNextTrack'
+          ? this.playNextTrack()
+          : this.playPrevTrack();
       });
     });
   }
 
   async _getAudioSourceFromNetease(track) {
     const data = await getMP3(track.id);
+    // console.log(data.data.data[0].url);
     return new Promise((resolve) => {
       resolve(data.data.data[0].url);
     });
@@ -144,7 +151,9 @@ export default class {
     this._howler && this._howler.play();
     this._playing = true;
     this._setIntervals();
-    this._duration = this._howler === null ? 0 : this._howler._duration;
+    this._howler.on('load', () => {
+      this._duration = this._howler === null ? 0 : this._howler._duration;
+    });
     // document.title = `${this._currentTrack.name} · ${this._currentTrack.ar[0].name}`;
   }
 
@@ -157,7 +166,12 @@ export default class {
   }
 
   // 替换播放列表
-  replacePlaylist(trackIDs, playlistSourceID, playlistSourceType, autoPlayTrackID = 'first') {
+  replacePlaylist(
+    trackIDs,
+    playlistSourceID,
+    playlistSourceType,
+    autoPlayTrackID = 'first'
+  ) {
     this._isPersonalFM = false;
     if (!this._enabled) this._enabled = true;
     this.list = trackIDs;

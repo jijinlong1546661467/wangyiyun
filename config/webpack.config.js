@@ -50,7 +50,6 @@ module.exports = {
 					loader: 'babel-loader',
 				},
 			},
-
 		],
 	},
 	mode: process.env.NODE_ENV,
@@ -59,9 +58,6 @@ module.exports = {
 			vue: 'vue/dist/vue.esm.js',
 			'@': path.resolve(__dirname, '../src'),
 		},
-	},
-	externals: {
-		vue: 'Vue',
 	},
 	devServer: {
 		open: true,
