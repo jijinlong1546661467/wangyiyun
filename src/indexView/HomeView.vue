@@ -244,6 +244,7 @@
 								</div>
 							</div>
 						</div>
+						
 						<div class=" mt-5  p-3" style="border-radius: 10px;"
 							:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
 							<div class="flex  justify-between items-center text-[19px] my-3" v-for="(item) in text.shi"
@@ -462,9 +463,9 @@ export default {
 
 		const loginStatu = await loginStatus()
 		//获取登录后的用户名
-		this.userName = loginStatu.data.data.profile.nickname
+		this.userName = loginStatu.data.data?.profile?.nickname
 		//头像
-		this.headImg = loginStatu.data.data.profile.avatarUrl
+		this.headImg = loginStatu.data.data?.profile?.avatarUrl
 		//获取当天的时间戳
 		this.date();
 		//异步获取登录后的数据

@@ -20,7 +20,6 @@
                 <li v-for="(item, index) in musicNenu.songs" :key="item.id" class="h-[9.7vw]" @click="playNum(index)">
                     <div class=" relative ml-4 leading-[5vw] flex w-[90%] justify-between">
                         <div class="flex w-[80vw]" style="flex-direction: column;">
-                            
                             <p class="text-[4.2vw] w-[60vw] flex overflow-hidden overflow-ellipsis whitespace-nowrap "
                                 :class="{ 'text-[red]': index == activeIndex }">
                                 <Icon icon="iconamoon:playlist-fill" class="text-[6vw] text-[red] mr-[3vw]"
@@ -46,14 +45,10 @@
 
 <script>
 export default {
-    props: {
-        musicNenu: {
-            required: true // 可选，根据你的需求设置
-        }
-    },
     data() {
         return {
             activeIndex: null,
+            musicNenu:[]
         }
     },
     methods: {
@@ -62,6 +57,9 @@ export default {
             this.activeIndex = index;
             window.$player._replaceCurrentTrack(this.musicNenu.songs[index].id,)
         },
+    },
+    created(){
+        this.musicNenu = store.get('musicIDNum')
     }
 }
 

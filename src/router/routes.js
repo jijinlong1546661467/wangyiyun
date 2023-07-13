@@ -50,10 +50,16 @@ export default [
     component: () => import('@/components/Current.vue')
   },
   {
-    path: '/MusicPlayback',
+    path: '/MusicPlayback/:index',
     //懒加载组件
     component: () => import('@/components/MusicPlayback/MusicPlayback.vue')
   },
+  {
+    path: '/MvLeaderboard',
+    //懒加载组件
+    component: () => import('@/components/MvLeaderboard.vue')
+  },
+  
 
 
 ];

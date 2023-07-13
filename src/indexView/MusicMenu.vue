@@ -152,50 +152,56 @@
             </div>
 
             <div class="pb-[12vw] overflow-hidden">
-                <li class="h-[11vw] flex mt-[5vw]" v-for="(item, index) in musicmMean.songs " :key="item.id" :class="index == 0 ? 'mt-0' : ''" @click="playNum(index)">
-                    <div class="text-[#a5a5a5] h-[100%] w-[5vw] flex" style="align-items: center;">
-                        {{ index + 1 }}
-                    </div>
-                    <div class=" relative ml-4 leading-[5vw] flex w-[90%] justify-between">
-                        <div class="flex w-[80vw]" style="flex-direction: column;">
-                            <p class="text-[3vw] w-[60vw] overflow-hidden overflow-ellipsis whitespace-nowrap "
-                            :class="{ 'text-[red]': index == activeIndex }" >
-                                {{ item.name }}
-                                <span v-if="item.tns" class="text-[#ccc]"
-                                :class="{ 'text-[red]': index == activeIndex }">
-                                    ({{ item.tns[0] }})
-                                </span>
-                                <span v-if="item.alia" class="text-[#ccc]"
-                                :class="{ 'text-[red]': index == activeIndex }">
-                                    {{ item.alia[0] }}
-                                </span>
-                            </p>
-                            <p class="text-[2vw] text-[#ccc] w-[60vw] overflow-hidden overflow-ellipsis whitespace-nowrap ">
-                                <span class="text-[#baa04e] text-[1.5vw] py-[1.5px] pl-[3px] mr-1 rounded"
-                                    style="border: 1px solid #baa04e;">
-                                    超清母带
-                                </span>
-                                {{ item.ar[0].name }}
-                                <span v-if="item.ar[1]">
-                                    /
-                                </span>
-                                {{ item?.ar[1]?.name }}
-                                <span v-if="item.name">
-                                    -
-                                </span>
-                                {{ item?.name }}
-                            </p>
+                <li class="h-[11vw] flex mt-[5vw]" v-for="(item, index) in musicmMean.songs " :key="item.id"
+                    :class="index == 0 ? 'mt-0' : ''" @click="playNum(index)">
+                    <router-link :to="{ path: `/MusicPlayback/${index}` }" class="flex">
+                        <div class="text-[#a5a5a5] h-[100%] w-[5vw] flex" style="align-items: center;">
+                            {{ index + 1 }}
                         </div>
-                        <div>
-                            <Icon icon="formkit:playcircle" class="text-[5vw] text-[#ccc] absolute" style="right: 9vw; top: 3vw;"/>
-                            <!-- <Icon icon="zondicons:pause-outline" /> -->
-                            <Icon icon="teenyicons:more-vertical-outline" class="text-[5vw] text-[#ccc] absolute" style="right: 0;top: 3vw;" />
+                        <div class=" relative ml-4 leading-[5vw] flex w-[90%] justify-between">
+                            <div class="flex w-[80vw]" style="flex-direction: column;">
+                                <p class="text-[3vw] w-[60vw] overflow-hidden overflow-ellipsis whitespace-nowrap "
+                                    :class="{ 'text-[red]': index == activeIndex }">
+                                    {{ item.name }}
+                                    <span v-if="item.tns" class="text-[#ccc]"
+                                        :class="{ 'text-[red]': index == activeIndex }">
+                                        ({{ item.tns[0] }})
+                                    </span>
+                                    <span v-if="item.alia" class="text-[#ccc]"
+                                        :class="{ 'text-[red]': index == activeIndex }">
+                                        {{ item.alia[0] }}
+                                    </span>
+                                </p>
+                                <p
+                                    class="text-[2vw] text-[#ccc] w-[60vw] overflow-hidden overflow-ellipsis whitespace-nowrap ">
+                                    <span class="text-[#baa04e] text-[1.5vw] py-[1.5px] pl-[3px] mr-1 rounded"
+                                        style="border: 1px solid #baa04e;">
+                                        超清母带
+                                    </span>
+                                    {{ item.ar[0].name }}
+                                    <span v-if="item.ar[1]">
+                                        /
+                                    </span>
+                                    {{ item?.ar[1]?.name }}
+                                    <span v-if="item.name">
+                                        -
+                                    </span>
+                                    {{ item?.name }}
+                                </p>
+                            </div>
+                            <div>
+                                <Icon icon="formkit:playcircle" class="text-[5vw] text-[#ccc] absolute"
+                                    style="right: 9vw; top: 3vw;" />
+                                <!-- <Icon icon="zondicons:pause-outline" /> -->
+                                <Icon icon="teenyicons:more-vertical-outline" class="text-[5vw] text-[#ccc] absolute"
+                                    style="right: 0;top: 3vw;" />
+                            </div>
                         </div>
-                    </div>
+                    </router-link>
                 </li>
             </div>
         </div>
-        <Player :musicNenu="musicmMean"/>
+        <Player />
     </div>
 </template>
 
@@ -203,6 +209,7 @@
 <script>
 import Player from "@/components/player/Player.vue"
 import axios from 'axios';
+import store from 'storejs';
 export default {
     components: { Player },
     data() {
@@ -217,6 +224,7 @@ export default {
             title: '歌单',
             musicSlider: [],
             condition: true,
+            musicIDNum: []
         }
     },
     methods: {
@@ -236,9 +244,10 @@ export default {
                 '', '')
         },
         //播放点击的
-        playNum(index){
+        playNum(index) {
             this.activeIndex = index;
-            window.$player._replaceCurrentTrack(this.musicmMean.songs[index].id,)
+            window.$player._current = index;
+            window.$player._replaceCurrentTrack(this.musicmMean.songs[index].id,'','')
         },
         handleArrowUpClick() {
             this.condition = !this.condition
@@ -279,6 +288,8 @@ export default {
             )
             .then((res) => {
                 this.musicmMean = res.data;
+                // 把歌单存进localhost
+                store.set('musicIDNum', this.musicmMean);
             })
             .catch((err) => {
                 console.log(err);
