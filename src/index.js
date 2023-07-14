@@ -1,8 +1,17 @@
 import Vue from 'vue';
 import { NoticeBar, Popup, Button, Area, Calendar, Sticky, Circle,DatetimePicker,Cell, CellGroup } from 'vant';
 import { Icon } from '@iconify/vue2';
+import player from './components/player/player';
+Vue.use(player)
 import App from '@/App.vue';
 import router from '@/router';
+
+
+// import VueRouter from '@/vue-router';
+// Vue.use(VueRouter)
+// const router = new VueRouter()
+
+
 // import store from '@/store';
 import { Switch, Drawer } from '@/components'
 Vue.component('Icon', Icon);

@@ -272,7 +272,7 @@ export default {
     },
     async created() {
         this.local();
-        axios
+        await axios
             .get(
                 `https://netease-cloud-music-api-five-roan-88.vercel.app/playlist/detail?id=${this.id}`
             )
@@ -282,7 +282,7 @@ export default {
             .catch((err) => {
                 console.log(err);
             });
-        axios
+        await axios
             .get(
                 `https://netease-cloud-music-api-five-roan-88.vercel.app/playlist/track/all?id=${this.id}`
             )
@@ -294,7 +294,7 @@ export default {
             .catch((err) => {
                 console.log(err);
             });
-        axios
+        await axios
             .get(
                 `https://netease-cloud-music-api-five-roan-88.vercel.app/related/playlist?id=${this.id}`
             )

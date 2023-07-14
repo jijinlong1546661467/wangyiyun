@@ -9,7 +9,7 @@
             <van-tabs v-model="active" animated>
                 <van-tab :title="tab[index]" v-for="(item, index) in tab" :key="item.id">
                     <div v-for="(item, indexs) in MVNum.data" :key="item.one">
-                        <div class="w-[92vw] mb-[6vw]">
+                        <div class="w-[92vw] ">
                             <div class="w-[100%] h-[52vw] relative rounded-[3vw] overflow-hidden mb-[2.7vw]">
                                 <img :src="item.cover" class="w-[100%] h-[52vw] bg-black" />
                                 <div class="absolute top-[2vw] text-[#fff] right-[2vw] text-[2.6vw] flex items-center">
@@ -18,20 +18,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex h-[5vw] mb-[1.5vw]">
-                            <span class="w-[5.3vw] text-[#999999] text-[4.3vw] mr-[2.8vw] text-center">
-                                <!-- {index + 1} -->
-                                {{ indexs + 1 }}
-                            </span>
-                            <span class="flex-1 line-clamp-1 text-[#000] text-[4vw] font-semibold h-[5vw]">
-                                {{ item.name }}
-                            </span>
-                        </div>
-                        <div class="flex h-[4vw] items-center">
-                            <span class=" text-[#999999] text-[2vw] mr-[2.8vw] text-center "
-                                v-for="itemss in item.mv.artists" :key="itemss.s">
-                                {{ itemss.name }}
-                            </span>
+                        <div class="flex mb-[7vw]">
+                            <div class="w-[13.6vw]">
+                                <span class=" text-[#999999] text-[6.4vw] mr-[2.8vw] text-center"
+                                    :class="indexs == 0 || indexs == 1 || indexs == 2 ? 'text-[red]' : ''">
+                                    {{ indexs + 1 }}
+                                </span>
+                            </div>
+                            <div class="flex flex-wrap flex-col">
+                                <p class="flex-1 line-clamp-1 text-[#000] text-[4vw] font-semibold h-[5vw]">
+                                    {{ item.name }}
+                                </p>
+                                <p class=" text-[#999999] text-[2vw] mr-[2.8vw] w-[75vw]"
+                                style=" white-space: nowrap;overflow: hidden;text-overflow: ellipsis; display: inline-block;">
+                                    <span v-for="itemss in item.mv.artists" :key="itemss.s"> 
+                                        {{ itemss.name }}
+                                    </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </van-tab>
@@ -83,3 +87,10 @@ export default {
     },
 };
 </script>
+
+<style>
+.van-tab__pane {
+    padding-left: 4.1vw;
+    padding-right: 4.1vw;
+}
+</style>

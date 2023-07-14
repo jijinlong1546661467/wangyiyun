@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import store from 'storejs';
 export default {
     data() {
         return {
