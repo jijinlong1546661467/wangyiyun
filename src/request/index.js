@@ -158,4 +158,12 @@ export const MVTop2 = () => http.get('top/mv');
 
 export const MVTop = (area, limit = 50) => http.get('/top/mv', { params: { limit, area } })
 
+/**
+* @descriptiong 获取歌词
+*/
+export const lyricText  = (params) => http.get(`/lyric?id=${params}`);
+
+
+
+
 

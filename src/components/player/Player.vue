@@ -69,13 +69,6 @@ export default {
         // 组件挂载后自动启动定时器
         this.startTimer();
     },
-    beforeDestroy() {
-        // 组件销毁前清除定时器
-        clearInterval(this.timerId);
-        this.play = !this.play;
-        window.$player.playOrPause();
-    },
-
     created() {
         window.$player = this.Player;
     },

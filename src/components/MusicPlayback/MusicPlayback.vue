@@ -21,8 +21,19 @@
         </div>
 
         <!-- 唱片 -->
-        <div class=" relative h-[94vw] mb-[30vw]">
-            <img src="/static/1.png" alt="" class=" absolute w-[71vw] left-[15%] top-[27%] z-10">
+        <div class="w-[100vw] h-[130vw] flex items-center flex-wrap px-[6vw] justify-center overflow-hidden relative internalShadow"
+            v-if="lyric" @click="lyric = !lyric">
+            <div class="absolute top-0 transition-all duration-1000" :style="{ top: -$player.lineHieght + 'vw' }">
+                <div v-for="(line, index) in $player.lyricLines" :key="index"
+                    class="text-[hsla(0,0%,88.2%,.8)] line-clamp-2 w-[100%] h-[12vw] px-[4vw] flex justify-center text-center"
+                    :style="{ color: index === $player.lineIndex ? '#fff' : 'hsla(0,0%,88.2%,.7)' }">
+                    {{ line.txt }}
+                </div>
+            </div>
+        </div>
+
+        <div class=" relative h-[94vw] mb-[30vw]" v-else>
+            <img src="/static/1.png" alt="" class=" absolute w-[71vw] left-[15%] top-[27%] z-10" @click="showLyric">
             <img id="zhuanImg" :src="musicmMean.songs[this.index].al.picUrl" alt=""
                 class="w-[50vw] absolute z-[5] rounded-[50%] left-[26%] top-[39%] rotate">
             <img src="/static/4.png" alt="" class=" absolute w-[22vw] left-[50%] right-[50%] top-[10%] z-20">
@@ -43,7 +54,7 @@
             <vue-slider v-model="$player.progress" :duration="0" :process="true" tooltip="none" :drag-on-click="true"
                 :min="0" :max="$player._duration" :interval="0.1" class="flex-1 mx-[2.5vw]" />
             <div class="text-[black]]  scale-[0.8] opacity-50">
-                {{ timeModification($player._duration)}}
+                {{ timeModification($player._duration) }}
             </div>
         </div>
 
@@ -75,6 +86,8 @@ export default {
     },
     data() {
         return {
+            // 歌词
+            lyric: true,
             // 歌单列表
             musicmMean: undefined,
             // 是否正在播放中
@@ -82,10 +95,14 @@ export default {
             // 当前播放歌曲的进度
             progress: undefined,
             // 当前播放索引
-            index: 0
+            index: 0,
+            num: 25
         }
     },
     methods: {
+        showLyric() {
+            this.lyric = !this.lyric
+        },
         // 时间修改
         timeModification(time) {
             const minutes = Math.floor(time / 60);
@@ -98,16 +115,18 @@ export default {
         },
         //上一首
         before() {
+            this.$player.playOrPause();
             if (this.index > 0) {
                 this.index--
-                window.$player._replaceCurrentTrack(this.musicmMean.songs[this.index].id, '', '')
+                this.$player._replaceCurrentTrack(this.musicmMean.songs[this.index].id, '', '')
             }
         },
         // 下一首
         nextMusic() {
+            this.$player.playOrPause();
             if (this.index < this.musicmMean.songs.length) {
                 this.index++
-                window.$player._replaceCurrentTrack(this.musicmMean.songs[this.index].id, '', '')
+                this.$player._replaceCurrentTrack(this.musicmMean.songs[this.index].id, '', '')
             }
         },
         //获取歌单ID
@@ -118,11 +137,18 @@ export default {
         },
         // 歌曲的开始播放与暂停
         playFn() {
-            this.play = !this.play;
-            window.$player.playOrPause();
+            this.$player.playOrPause();
+        },
+        //点击替换
+        playSingle(id) {
+            this.$player.replacePlaylist(
+                this.musicmMean.songs.map(song => song.id),
+                '',
+                '',
+                id
+            );
         },
     },
-
     watch: {
         '$player._playing': {
             immediate: true,
@@ -138,13 +164,13 @@ export default {
             },
         },
     },
-    created() {
+    async created() {
         // 获取点击的歌曲索引
         this.local()
         // 获得歌曲详情
         this.musicmMean = store.get('musicIDNum')
         // 自动播放点击的歌曲
-        window.$player._replaceCurrentTrack(this.musicmMean.songs[this.index].id)
+        this.playSingle(this.musicmMean.songs[this.index].id)
     }
 }
 </script>
