@@ -49,7 +49,6 @@ export default {
     },
     methods: {
         showPopup() {
-            // console.log(this.musicNenu)
             this.show = true;
         },
         playFn() {
