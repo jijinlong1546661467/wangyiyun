@@ -59,6 +59,11 @@ export default [
     //懒加载组件
     component: () => import('@/components/MvLeaderboard.vue')
   },
+  {
+    path: '/videoPlayerView/:id',
+    //懒加载组件
+    component: () => import('@/indexView/videoPlayerView.vue')
+  },
   
 
 

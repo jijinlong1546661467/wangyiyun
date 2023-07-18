@@ -62,7 +62,7 @@ export default class {
 
 
     async initLyricPlayer(trackId){
-        console.log(trackId);
+        // console.log(trackId);
         const res = await lyricText(trackId);
         lyricPlayer = new Lyric(res.data.lrc.lyric, ({lineNum, txt}) => {
             this.lineIndex = lineNum;// 索引
@@ -112,7 +112,7 @@ export default class {
 
     async _getAudioSourceFromNetease(track) {
         const data = await getMP3(track.id);
-        console.log(data.data.data[0].url);
+        // console.log(data.data.data[0].url);
         return new Promise((resolve) => {
             resolve(data.data.data[0].url);
         });

@@ -21,12 +21,12 @@
         </div>
 
         <!-- 唱片 -->
-        <div class="w-[100vw] h-[130vw] flex items-center flex-wrap px-[6vw] justify-center overflow-hidden relative internalShadow"
+        <div class="w-[100vw] h-[123vw] flex items-center flex-wrap px-[6vw] justify-center overflow-hidden relative internalShadow"
             v-if="lyric" @click="lyric = !lyric">
             <div class="absolute top-0 transition-all duration-1000" :style="{ top: -$player.lineHieght + 'vw' }">
                 <div v-for="(line, index) in $player.lyricLines" :key="index"
-                    class="text-[hsla(0,0%,88.2%,.8)] line-clamp-2 w-[100%] h-[12vw] px-[4vw] flex justify-center text-center"
-                    :style="{ color: index === $player.lineIndex ? '#fff' : 'hsla(0,0%,88.2%,.7)' }">
+                    class="text-[hsla(0,68%,54%,1)] line-clamp-2 w-[100%] h-[12vw] px-[4vw] flex justify-center text-center"
+                    :style="{ color: index === $player.lineIndex ? '#fff' : '#000' }">
                     {{ line.txt }}
                 </div>
             </div>
@@ -86,8 +86,8 @@ export default {
     },
     data() {
         return {
-            // 歌词
-            lyric: true,
+            // 歌词与转盘
+            lyric: false,
             // 歌单列表
             musicmMean: undefined,
             // 是否正在播放中
@@ -117,16 +117,20 @@ export default {
         before() {
             this.$player.playOrPause();
             if (this.index > 0) {
+                console.log(this.index)
                 this.index--
-                this.$player._replaceCurrentTrack(this.musicmMean.songs[this.index].id, '', '')
+                this.playSingle(this.musicmMean.songs[this.index].id)
+                this.$player.lineIndex = 0
             }
         },
         // 下一首
         nextMusic() {
             this.$player.playOrPause();
             if (this.index < this.musicmMean.songs.length) {
+                console.log(this.index)
                 this.index++
-                this.$player._replaceCurrentTrack(this.musicmMean.songs[this.index].id, '', '')
+                this.playSingle(this.musicmMean.songs[this.index].id)
+                this.$player.lineIndex = 0
             }
         },
         //获取歌单ID

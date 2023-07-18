@@ -139,14 +139,14 @@
 							:class="`${this.switchCheckStatus ? 'bg-gray-900' : 'bg-slate-100'}`">
 							<div class="w-[38.5vw] flex items-center">
 								<img :src="headImg" alt="" class="w-[12vw] h-[12vw] rounded-[50%] bg-cover">
-								<div v-if="(cookie !== undefined && cookie!== null)">
+								<div v-if="(cookie !== undefined && cookie !== null)">
 									<router-link :to="{ path: `/MyHome` }">
 										<p class="text-[2vw] font-[700] ml-3 " style="display: inline;">
 											{{ userName }}
 										</p>
 									</router-link>
 								</div>
-								<div v-else-if="(cookie == undefined || cookie== null)">
+								<div v-else-if="(cookie == undefined || cookie == null)">
 									<router-link :to="{ path: `/Login` }">
 										<p class="text-[2vw] font-[700] ml-3 " style="display: inline;">
 											前往登录
@@ -244,7 +244,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class=" mt-5  p-3" style="border-radius: 10px;"
 							:class="`${switchCheckStatus ? 'bg-gray-700' : 'bg-[white]'}`">
 							<div class="flex  justify-between items-center text-[19px] my-3" v-for="(item) in text.shi"
@@ -375,7 +375,7 @@ export default {
 			cookie: store.get('__m__cookie'),
 		};
 	},
-	methods: {		
+	methods: {
 		//退出登录，清除cookie
 		cleanCookie() {
 			logout()

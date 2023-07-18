@@ -161,7 +161,29 @@ export const MVTop = (area, limit = 50) => http.get('/top/mv', { params: { limit
 /**
 * @descriptiong 获取歌词
 */
-export const lyricText  = (params) => http.get(`/lyric?id=${params}`);
+export const lyricText = (params) => http.get(`/lyric?id=${params}`);
+
+
+
+/**
+* @description 当前播放歌曲的歌词
+*/
+export const featLyric = (id) => http.get('/lyric', { params: { id } });
+
+/**
+* @description MV视频
+*/
+export const featMvUrl = (id) => http.get('/mv/url', { params: { id } });
+
+/**
+* @description MV视频信息
+*/
+export const featMvDetail = (mvid) => http.get('/mv/detail', { params: { mvid } });
+
+/**
+* @description 获取 mv 点赞转发评论数数据
+*/
+export const featMvDetailInfo = (mvid) => http.get('/mv/detail/info', { params: { mvid } });
 
 
 

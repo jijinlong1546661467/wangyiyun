@@ -11,7 +11,8 @@
                     <div v-for="(item, indexs) in MVNum.data" :key="item.one">
                         <div class="w-[92vw] ">
                             <div class="w-[100%] h-[52vw] relative rounded-[3vw] overflow-hidden mb-[2.7vw]">
-                                <img :src="item.cover" class="w-[100%] h-[52vw] bg-black" />
+                                <img :src="item.cover" class="w-[100%] h-[52vw] bg-black"
+                                    @click="$router.push(`/videoPlayerView/${item.id}`);" />
                                 <div class="absolute top-[2vw] text-[#fff] right-[2vw] text-[2.6vw] flex items-center">
                                     <Icon icon="solar:play-bold" color="#fdffff" class="mr-[0.5vw] text-[2.6vw]" />
                                     {{ dataTruncation(item.playCount) }}
@@ -30,8 +31,8 @@
                                     {{ item.name }}
                                 </p>
                                 <p class=" text-[#999999] text-[2vw] mr-[2.8vw] w-[75vw]"
-                                style=" white-space: nowrap;overflow: hidden;text-overflow: ellipsis; display: inline-block;">
-                                    <span v-for="itemss in item.mv.artists" :key="itemss.s"> 
+                                    style=" white-space: nowrap;overflow: hidden;text-overflow: ellipsis; display: inline-block;">
+                                    <span v-for="itemss in item.mv.artists" :key="itemss.s">
                                         {{ itemss.name }}
                                     </span>
                                 </p>
